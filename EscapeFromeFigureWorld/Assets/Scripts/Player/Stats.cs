@@ -4,6 +4,9 @@ public class Stats : MonoBehaviour
 {
 
     public static int score;
+
+    private int currentId = 0;
+
     [SerializeField] TextMeshProUGUI scoreField;
     void Start()
     {
@@ -12,7 +15,7 @@ public class Stats : MonoBehaviour
 
     private void OnStackEnded(int id)
     {
-        score++;
+        if (currentId != id) score++;
         scoreField.text = score.ToString();
 
     }

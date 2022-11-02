@@ -6,6 +6,11 @@ public class BallMovement : MonoBehaviour
 
     [SerializeField] float InitialVelocity;
     [SerializeField] float StartAngle;
+
+    [SerializeField] AudioSource audioSource;
+
+    [SerializeField] AudioClip jumpClip, swipeClip;
+
     private ParticleSystem ballHalo;
     private bool isHaloPlayed;
     public bool isGrounded;
@@ -18,19 +23,6 @@ public class BallMovement : MonoBehaviour
         GroundCheck();
     }
 
-    //IEnumerator CMovement(float v0, float angle)
-    //{
-    //    float t = 0;
-    //    while (t < 100)
-    //    {
-    //        float x = v0 * t * Mathf.Cos(angle);
-    //        float y = v0 * t * Mathf.Sin(angle) - (1f / 2f) * -Physics.gravity.y * Mathf.Pow(t, 2);
-    //        transform.position = new Vector3(x, y, 0);
-    //        t += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
-
     public void MoveFoward()
     {
         //Vector3 destinationPosition = new Vector3(transform.position.x - 1f, transform.position.y + 2f, transform.position.z);
@@ -42,6 +34,8 @@ public class BallMovement : MonoBehaviour
 
     IEnumerator Foward()
     {
+        audioSource.PlayOneShot(jumpClip);
+
         transform.GetComponent<Rigidbody>().AddForce(transform.up * 100);
 
         yield return new WaitForSeconds(0.2f);
@@ -54,6 +48,8 @@ public class BallMovement : MonoBehaviour
         //Vector3 destinationPosition = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 1f );
         //transform.position = destinationPosition;
 
+        audioSource.PlayOneShot(swipeClip);
+
         transform.GetComponent<Rigidbody>().AddForce(transform.up * 60);
         transform.GetComponent<Rigidbody>().AddForce(transform.forward * 40);
     }
@@ -62,6 +58,8 @@ public class BallMovement : MonoBehaviour
     {
         //Vector3 destinationPosition = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z - 1f);
         //transform.position = destinationPosition;
+        audioSource.PlayOneShot(swipeClip);
+
         transform.GetComponent<Rigidbody>().AddForce(transform.up * 60);
         transform.GetComponent<Rigidbody>().AddForce(-transform.forward * 40);
     }
@@ -74,8 +72,7 @@ public class BallMovement : MonoBehaviour
             if (!isHaloPlayed)
             {
                 ballHalo.Play();
-                isHaloPlayed = true;
-                
+                isHaloPlayed = true;               
             }
         }
         else
