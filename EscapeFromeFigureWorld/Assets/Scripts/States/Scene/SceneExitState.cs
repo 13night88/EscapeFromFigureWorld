@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [DefaultExecutionOrder(100)]
 public class SceneExitState : SceneBaseState

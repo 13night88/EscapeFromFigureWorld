@@ -11,6 +11,8 @@ public class BallMovement : MonoBehaviour
 
     [SerializeField] AudioClip jumpClip, swipeClip;
 
+    [SerializeField] float minDistanceToGround = .15f;
+
     private ParticleSystem ballHalo;
     private bool isHaloPlayed;
     public bool isGrounded;
@@ -67,7 +69,7 @@ public class BallMovement : MonoBehaviour
     private void GroundCheck()
     {
        RaycastHit hit;
-       if(Physics.Raycast(transform.position, Vector3.down, out hit, 0.4f + .15f)){
+       if(Physics.Raycast(transform.position, Vector3.down, out hit, 0.4f + minDistanceToGround)){
             if(hit.collider.gameObject.tag != "StepStack") isGrounded = true;
             if (!isHaloPlayed)
             {

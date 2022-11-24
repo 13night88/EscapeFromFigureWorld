@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +20,6 @@ public class ExitGamePopup : PopupBase
 
     private void OnEnable()
     {
-        Debug.Log("Activated");
         scoreText.text = Constants.SCORE_TEXT + Stats.score.ToString();
     }
 }

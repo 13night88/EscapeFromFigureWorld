@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StandartSwipeControls : MonoBehaviour
 {
@@ -33,7 +32,6 @@ public class StandartSwipeControls : MonoBehaviour
             startTouchPosition = Input.GetTouch(0).position;
 
             Debug.Log(startTouchPosition);
-            //text.text = startTouchPosition.ToString();
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
